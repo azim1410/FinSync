@@ -1,12 +1,13 @@
 
 import './App.css'
+import AppRoute from './AppRoute'
 
 function App() {
   
 
   return (
     <>
-    <h1>Hello FinSync</h1>
+    <AppRoute />
     </>
   )
 }
