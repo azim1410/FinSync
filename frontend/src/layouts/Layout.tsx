@@ -1,22 +1,23 @@
 import { Outlet } from 'react-router-dom';
 import RightPannel from '../components/RightPannel';
 import LeftPannel from '../components/LeftPannel';
+import { Box } from '@mui/material';
 
 const Layout = () => {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <div style={{ width: '20%', background: '#f0f0f0', padding: '1rem' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <Box sx={{ width: '20%', background: '#262626', padding: '1rem' }}>
         <LeftPannel />
-      </div>
+      </Box>
 
-      <div style={{ flex: 1, padding: '1rem' }}>
+      <Box sx={{ flex: 1, padding: '1rem', backgroundColor: '#262626'}}>
         <Outlet />
-      </div>
+      </Box>
 
-      <div style={{ width: '20%', background: 'gray', padding: '1rem' }}>
+      <Box sx={{ width: '20%', background: '#262626', padding: '1rem' }}>
         <RightPannel />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
