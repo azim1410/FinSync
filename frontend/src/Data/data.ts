@@ -45,6 +45,23 @@ export const group = [
                 paid_by: ['1', '2'], // members id
                 split_method: 'equally',
                 amount: '1234',
+                shares: [
+                    {
+                        member_id: '1',
+                        amount_to_recieve: '123',
+                        amount_to_give: '1234',
+                    },
+                    {
+                        member_id: '2',
+                        amount_to_recieve: '123',
+                        amount_to_give: '1234',
+                    },
+                    {
+                        member_id: '3',
+                        amount_to_recieve: '123',
+                        amount_to_give: '1234',
+                    }
+                ]
             },
             {
                 transaction_id: '2',
@@ -53,6 +70,23 @@ export const group = [
                 paid_by: ['3'], // members id
                 split_method: 'unequally',
                 amount: '2345',
+                shares: [
+                    {
+                        member_id: '1',
+                        amount_to_recieve: '123',
+                        amount_to_give: '1234',
+                    },
+                    {
+                        member_id: '2',
+                        amount_to_recieve: '123',
+                        amount_to_give: '1234',
+                    },
+                    {
+                        member_id: '3',
+                        amount_to_recieve: '123',
+                        amount_to_give: '1234',
+                    }
+                ]
             }
         ]
     }
