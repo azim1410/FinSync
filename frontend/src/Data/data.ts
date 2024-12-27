@@ -16,3 +16,44 @@ export const groups = [
     {id: '5', grp_name: 'Family expenses'},
 
 ]
+
+export const users = [
+    {
+        id: '1',
+        email: 'azimadamani.01@gmai.com',
+        password: 'password',
+        name: 'Azim Damani',
+        phone_no: '9985700412',
+        friends: ['2', '3', '4'], // friends id,
+        groups: ['1', '2', '3'],
+        total_balance: '2345',
+        you_owe: '989',
+        owes_you: '1276',
+    }
+]
+
+export const group = [
+    {
+        id :'1',
+        grp_name: 'goa',
+        members: ['1', '2', '3', '4'],
+        transactions: [
+            {
+                transaction_id: '1',
+                date: '27-12-2024',
+                title: 'breakfast',
+                paid_by: ['1', '2'], // members id
+                split_method: 'equally',
+                amount: '1234',
+            },
+            {
+                transaction_id: '2',
+                date: '27-12-2024',
+                title: 'Dinner',
+                paid_by: ['3'], // members id
+                split_method: 'unequally',
+                amount: '2345',
+            }
+        ]
+    }
+]
