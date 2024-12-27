@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 
     private UserService userService;
@@ -24,18 +25,18 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/add-friend/{friendId}")
-    public UserDto addFriend(@PathVariable String userId, @PathVariable String friendId) {
-        return userService.addFriend(userId, friendId);
+    public UserDto addFriend(@PathVariable String userId, @PathVariable String friendId,@RequestParam String Token){
+        return userService.addFriend(userId, friendId,Token);
     }
 
     @DeleteMapping("/{userId}/remove-friend/{friendId}")
-    public UserDto removeFriend(@PathVariable String userId, @PathVariable String friendId) {
-        return userService.removeFriend(userId, friendId);
+    public UserDto removeFriend(@PathVariable String userId, @PathVariable String friendId,@RequestParam String Token) {
+        return userService.removeFriend(userId, friendId,Token);
     }
 
     @GetMapping("/{userId}")
-    public User getUserById(@PathVariable String userId) {
-        return userService.getUserById(userId);
+    public User getUserById(@PathVariable String userId,@RequestParam String Token) {
+        return userService.getUserById(userId,Token);
     }
 
     @PostMapping("/login")

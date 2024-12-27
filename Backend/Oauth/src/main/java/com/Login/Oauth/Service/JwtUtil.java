@@ -1,5 +1,6 @@
 package com.Login.Oauth.Service;
 
+import com.Login.Oauth.Exceptions.JwtExceptions.JwtExpired;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 
@@ -24,12 +25,16 @@ public class JwtUtil {
 
     // Validate JWT
     public static Claims validateToken(String token) {
-        Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        try {
+            Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody(); // Return claims if the token is valid
+            return Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody(); // Return claims if the token is valid
+        }catch (ExpiredJwtException e) {
+            throw new JwtExpired("Token Expired Login Again");
+        }
     }
 }

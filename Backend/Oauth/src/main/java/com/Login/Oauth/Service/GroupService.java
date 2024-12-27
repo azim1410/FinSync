@@ -4,6 +4,9 @@ import com.Login.Oauth.Dto.GroupDto;
 import com.Login.Oauth.Dto.UserDto;
 import com.Login.Oauth.Entity.Group;
 import com.Login.Oauth.Entity.User;
+import com.Login.Oauth.Exceptions.GroupExceptions.GroupNotFound;
+import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
+import com.Login.Oauth.Exceptions.UserExceptions.UserNotFound;
 import com.Login.Oauth.Repo.GroupRepo;
 import com.Login.Oauth.Repo.UserRepo;
 import lombok.AllArgsConstructor;
@@ -21,9 +24,10 @@ public class GroupService {
     private GroupRepo groupRepo;
     private UserRepo userRepo;
 
-    public GroupDto createGroup(Group group, String Id) {
+    public GroupDto createGroup(Group group, String Id,String token) {
+        if(validate(token)) throw new JwtInvalid("Token Invalid");
         User user = userRepo.findById(Id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFound("User not found"));
         group.setCreatedBy(user.getId());
         groupRepo.save(group);
         user.getGroups().add(group);
@@ -32,9 +36,10 @@ public class GroupService {
         return GroupDto.builder().message("created").status("200").build();
     }
 
-    public UserDto addUserToGroup(String userId, String groupId) {
-        Group group = groupRepo.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
-        User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserDto addUserToGroup(String userId, String groupId,String token) {
+        if(validate(token)) throw new JwtInvalid("Token Invalid");
+        Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
 
         group.getMemberIds().add(userId);
         groupRepo.save(group);
@@ -45,9 +50,10 @@ public class GroupService {
         return UserDto.builder().message("User added to group successfully!").status("200").build();
     }
 
-    public UserDto removeUserFromGroup(String userId, String groupId) {
-        Group group = groupRepo.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
-        User user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserDto removeUserFromGroup(String userId, String groupId, String token) {
+        if(validate(token)) throw new JwtInvalid("Token Invalid");
+        Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
+        User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
 
         group.getMemberIds().remove(userId);
         groupRepo.save(group);
@@ -66,7 +72,12 @@ public class GroupService {
         return UserDto.builder().message("User removed from group successfully!").status("200").build();
     }
 
-    public Group getGroupById(String groupId) {
-        return groupRepo.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
+    public Group getGroupById(String groupId ,String token) {
+        if(validate(token)) throw new JwtInvalid("Token Invalid");
+        return groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
+    }
+
+    public Boolean validate(String token){
+        return JwtUtil.validateToken(token).isEmpty();
     }
 }
