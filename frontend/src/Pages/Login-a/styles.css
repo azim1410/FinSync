@@ -1,0 +1,103 @@
+.container-login-page {
+    color: black;
+    text-align: left;
+    display: flex;
+  }
+  
+  .sign-up-left-container{
+      width: 50%;
+      overflow: hidden; /* Prevents overflow */
+      display: flex; /* Ensures image can stretch */
+      align-items: center; /* Center the image vertically */
+      justify-content: center;
+  }
+  .loginpage-app-logo{
+      width: 100%; /* Ensures the image takes up full width */
+      height: 100vh; /* Ensures the image fills the viewport height */
+      object-fit: cover;
+      
+  }
+  
+  .sign-up-inputfeild {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .login-form {
+    background-color: white;
+    padding: 2rem;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  }
+  
+  .login-inp {
+    background-color: white;
+    border: 1.3px solid rgb(177, 177, 177);
+    width: 100%;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    font-size: 2rem;
+    color: black;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  
+  .sign-up-submit-btn {
+    background-color: #ff652f;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    color: white;
+  }
+  
+  .login-h3-custom {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #5f5f5fa8;
+  }
+  
+  .sign-up-h2-custom {
+    font-weight: 500;
+    color: rgb(53, 53, 53);
+  }
+  
+  .login-inp-pass{
+    background-color: white;
+    width: 90%;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    font-size: 2rem;
+    color: black;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+  
+  .login-pass-toggle{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  
+  .login-pass-inp-toggle{
+    display: flex;
+    border: 1.3px solid rgb(177, 177, 177);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    font-size: 2rem;
+    color: black;
+    border-radius: 8px;
+    width: 100%;
+  }

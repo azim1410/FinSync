@@ -1,22 +1,25 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './Pages/Login/Login';
+import Login from './Pages/Login-a/Login';
 import Signup from './Pages/Signup/Signup';
 import Dashboard from './Pages/dashboard/Dashboard';
 import Layout from './layouts/Layout';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 const AppRoute = () => {
   return (
-    <>
+
     <BrowserRouter>
-    <Routes>
-        <Route path="/signup" element={<Signup />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path='/' element={<Layout />}>
-        <Route path='/dashboard' element={<Dashboard />} />
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/' element={<Layout />}>
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
         </Route>
-    </Routes>
+      </Routes>
     </BrowserRouter>
-    </>
+
   )
 }
 
