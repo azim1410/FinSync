@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { login } from '../../features/auth/authServices';
 import { loginSuccess } from '../../features/auth/AuthSlice';
+import { Box, Link } from '@mui/material';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -43,10 +44,15 @@ const Login = () => {
             <button className='login-pass-toggle' onClick={() => setShowPassword(!showPassword)}>{showPassword === false ? "🫣" : "👀"}</button>
           </div>
         </div>
-        <button className='sign-up-submit-btn' onClick={() => mutation.mutate({email, password})} disabled={mutation.isPending}>
+        <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <button className='sign-up-submit-btn' onClick={() => mutation.mutate({ email, password })} disabled={mutation.isPending}>
           {mutation.isPending ? "Logging in..." : 'Login'}
         </button>
-        {mutation.isError && <p style={{color: 'red'}}>Login Failed. Try again</p>}
+        {mutation.isError && <p style={{ color: 'red' }}>Login Failed. Try again</p>}
+        <Link href="/signup" underline="hover" color='#5a5a5a'>
+          {'Sign Up ?'}
+        </Link>
+        </Box>
       </div>
     </div>
   )

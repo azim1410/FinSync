@@ -5,6 +5,7 @@ import appLogo from "../../../../Images/FinSyncSystem.webp"
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { register } from '../../features/auth/authServices';
+import { Box, Link } from '@mui/material';
 
 
 const Signup = () => {
@@ -46,8 +47,13 @@ const Signup = () => {
                         <button className='signup-pass-toggle' onClick={() => setShowPassword(!showPassword)}>{showPassword === false ? "🫣" : "👀"}</button>
                     </div>
                 </div>
+                <Box sx={{display:'flex', justifyContent:'space-between', alignItems: 'center'}}>
                 <button className='sign-up-submit-btn' onClick={() => mutation.mutate({email, name, password})} disabled={mutation.isPending}>Sign me up!</button>
                 {mutation.isError && <p style={{color: 'red'}}>Signup Failed, try again</p>}
+                <Link href="/login" underline="hover" color='#5a5a5a'>
+                    {'Already have an account ?'}
+                </Link>
+                </Box>
             </div>
         </div>
     )
