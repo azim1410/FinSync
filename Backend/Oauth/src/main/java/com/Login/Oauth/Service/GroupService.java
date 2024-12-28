@@ -97,7 +97,7 @@ public class GroupService {
         }
 
         User user=userRepo.findById(group.getCreatedBy()).get();
-        user.setYou_are_owed(amount-share);
+        user.setYou_are_owed(amount-share+ user.getYou_are_owed());
         userRepo.save(user);
 
         TransactionDto transaction = TransactionDto.builder()
