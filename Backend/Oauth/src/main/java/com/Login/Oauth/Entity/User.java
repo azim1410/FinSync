@@ -22,6 +22,10 @@ public class User {
     public String email;
     public String name;
     public String password;
+    @Builder.Default
+    public double you_owe=0.0;
+    @Builder.Default
+    public double you_are_owed=0.0;
 
     List<User> friends=new ArrayList<>();
 

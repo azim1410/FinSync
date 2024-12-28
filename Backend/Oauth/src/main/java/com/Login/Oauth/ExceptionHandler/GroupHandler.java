@@ -14,4 +14,10 @@ public class GroupHandler {
         return new ResponseEntity<>(ExceptionDto.builder().message(ex.getMessage())
                 .status("404").build(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ExceptionDto> handleRuntimeException(RuntimeException ex){
+        return new ResponseEntity<>(ExceptionDto.builder().message(ex.getMessage())
+                .status("404").build(), HttpStatus.LENGTH_REQUIRED);
+    }
 }

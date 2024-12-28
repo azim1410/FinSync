@@ -1,5 +1,6 @@
 package com.Login.Oauth.Entity;
 
+import com.Login.Oauth.Dto.TransactionDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +22,5 @@ public class Group {
     private String name;
     private String CreatedBy;
     private List<String> memberIds=new ArrayList<>();
+    private List<TransactionDto> transactions=new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.Login.Oauth.Controller;
 
+import com.Login.Oauth.Dto.AmountDto;
 import com.Login.Oauth.Dto.GroupDto;
 import com.Login.Oauth.Dto.UserDto;
 import com.Login.Oauth.Entity.Group;
@@ -33,5 +34,10 @@ public class GroupController {
     @GetMapping("/{groupId}")
     public Group getGroupById(@PathVariable String groupId,@RequestParam String Token) {
         return groupService.getGroupById(groupId,Token);
+    }
+
+    @PostMapping("/{groupId}/transaction")
+    public GroupDto addTransactionToGroup(@PathVariable String groupId, @RequestParam String Token, @RequestBody AmountDto amountdto){
+        return groupService.addTransactionToGroup(groupId, amountdto.getAmount(),Token, amountdto.getDescription());
     }
 }
