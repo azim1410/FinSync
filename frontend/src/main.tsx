@@ -11,7 +11,7 @@ import { store } from './store/store.ts';
 
 const queryClient = new QueryClient();
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('gradient')!).render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <App />
