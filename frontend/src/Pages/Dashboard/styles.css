@@ -236,3 +236,41 @@
   color: var(--lightgreen-color);
   /* margin-top: 4px; */
 }
+
+/* Modal styling */
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 0px;
+  max-width: 500px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  /* font-weight: bold; */
+  color: #ffffff;
+  cursor: pointer;
+}
+
+
