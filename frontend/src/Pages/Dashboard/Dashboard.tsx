@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import profile_pic1 from "../../assets/profile_pic1.webp";
 import profile_pic2 from "../../assets/profile_pic2.webp";
 import profile_pic3 from "../../assets/profile_pic3.jpg";
+import AddExpenseModal from "../../Components/AddExpenseModal/AddExpenseModal"; // Import the modal component
+
 const Dashboard: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard-container">
@@ -12,7 +24,11 @@ const Dashboard: React.FC = () => {
           <div className="dashboard-header">
             <h1 className="dashboard-h1">Dashboard</h1>
             <div className="dashboard-expense-actions">
-              <a href="/add-expense" className="add-expense-btn button">
+              <a
+                href="#"
+                onClick={openModal}
+                className="add-expense-btn button"
+              >
                 Add an expense
               </a>
               <a href="/settle-up" className="settle-up-btn button">
@@ -126,6 +142,18 @@ const Dashboard: React.FC = () => {
         </div>
         <div className="dashboard-right-container">right Container</div>
       </div>
+
+      {/* Modal overlay */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <AddExpenseModal />
+            <button className="close-modal" onClick={closeModal}>
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
