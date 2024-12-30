@@ -27,12 +27,18 @@ public class UserService {
 
     private UserRepo userRepo;
     private ObjectMapper objectMapper;
+    private EmailSenderService emailSenderService;
 
     public UserDto addUser(User user){
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
         String hashedPassword=bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         userRepo.save(user);
+        try {
+            emailSenderService.sendWelcomeEmail(user.getEmail());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         return UserDto.builder().message("User Added Successfully").status("200").build();
     }
 
