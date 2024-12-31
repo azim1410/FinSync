@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,9 +52,12 @@ public class UserService {
                 .add(User.builder().id(friend.getId())
                         .name(friend.getName())
                         .email(friend.getEmail())
+                        .friends(new ArrayList<>())
+                        .groups(new ArrayList<>())
+                        .you_owe(0.0)
+                        .you_are_owed(0.0)
                         .build());
 
-        System.out.println(user);
         userRepo.save(user);
 
         return UserDto.builder().message("Friend added successfully!").status("200").build();

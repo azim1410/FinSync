@@ -3,6 +3,7 @@ package com.Login.Oauth.Controller;
 import com.Login.Oauth.Dto.AmountDto;
 import com.Login.Oauth.Dto.GroupDto;
 import com.Login.Oauth.Dto.UserDto;
+import com.Login.Oauth.Dto.jwtDto;
 import com.Login.Oauth.Entity.Group;
 import com.Login.Oauth.Service.GroupService;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class GroupController {
     private final GroupService groupService;
 
     @PostMapping("/create/{Id}")
-    public GroupDto createGroup(@RequestBody Group group, @PathVariable String Id,@RequestParam String Token) {
+    public jwtDto createGroup(@RequestBody Group group, @PathVariable String Id, @RequestParam String Token) {
         return groupService.createGroup(group,Id,Token);
     }
 
