@@ -8,5 +8,5 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class jwtDto {
-    private String message,status,data;
+    private String message,status,data,id;
 }

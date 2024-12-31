@@ -1,14 +1,15 @@
 package com.Login.Oauth.Controller;
 
 
-import com.Login.Oauth.Dto.LoginDto;
-import com.Login.Oauth.Dto.UserDto;
-import com.Login.Oauth.Dto.jwtDto;
+import com.Login.Oauth.Dto.*;
 import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,12 +36,22 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getUserById(@PathVariable String userId,@RequestParam String Token) {
+    public ResponseDto getUserById(@PathVariable String userId, @RequestParam String Token) {
         return userService.getUserById(userId,Token);
     }
 
     @PostMapping("/login")
     public jwtDto login(@RequestBody LoginDto loginDto){
         return userService.login(loginDto.getEmail(), loginDto.getPassword());
+    }
+
+    @GetMapping("/all-users")
+    public ResponseEntity<List<AllUsersDto>> getAllUsers(@RequestParam String Token){
+        return userService.getAllUsers(Token);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<AllUsersDto> getUserFromEmail(@PathVariable String email,@RequestParam String Token){
+        return userService.getUserFromEmail(email,Token);
     }
 }
