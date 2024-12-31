@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation Email</title>
+    <style>
+        @keyframes sparkle {
+            0%, 100% {
+                text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            }
+            50% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff;
+            }
+        }
+
+        @keyframes sparkle-button {
+            0% {
+                box-shadow: 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #ffffff;
+            }
+            50% {
+                box-shadow: 0 0 15px #0073e6, 0 0 20px #ffffff, 0 0 25px #0073e6;
+            }
+            100% {
+                box-shadow: 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #ffffff;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #0073e6;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header img {
+            max-width: 150px;
+        }
+
+        .content {
+            padding: 30px;
+            color: #333;
+            background: url('https://i.postimg.cc/vBBLtznT/82fa1233-302e-41ff-a26f-5421877ba4a5.jpg') no-repeat center center/cover;
+        }
+
+        .content h2 {
+            color: #0073e6;
+            font-size: 24px;
+            margin-bottom: 20px;
+            animation: sparkle 1.5s infinite;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .content .button {
+            background-color: #0073e6;
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .content .button:hover {
+            animation: sparkle-button 1s infinite;
+        }
+
+        .footer {
+            background-color: #f4f7fa;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .footer a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="email-container">
+    <!-- Header with logo -->
+    <div class="header">
+        <img src="https://i.ibb.co/V258bwQ/image-1.png" alt="Finsync Logo">
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <h2>You've Been Invited to Join Finsync</h2>
+        <p>Hello [Recipient's Name],</p>
+        <p>We hope you're doing well! [Inviter's Name] has sent you an invitation to join Finsync, our innovative platform to manage your finances effortlessly.</p>
+        <p>By joining, you'll gain access to a suite of features designed to make financial management simpler and more efficient.</p>
+        <p>Click the button below to accept the invitation and get started:</p>
+        <a href="https://finsync.com/join?invitationCode=[unique_code]" class="button">Join Finsync</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>If you have any questions, feel free to <a href="mailto:support@finsync.com">contact us</a>.</p>
+        <p>Finsync Team | All Rights Reserved</p>
+    </div>
+</div>
+
+</body>
+</html>

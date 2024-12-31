@@ -2,7 +2,6 @@ package com.Login.Oauth.Service;
 
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -33,7 +32,7 @@ public class EmailSenderService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         // Load and modify the HTML template
-        Path templatePath = Paths.get(new ClassPathResource("templates/index.html").getURI());
+        Path templatePath = Paths.get(new ClassPathResource("templates/Welcome.html").getURI());
         String htmlContent = Files.readString(templatePath);
 
         helper.setTo(toEmail);
