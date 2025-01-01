@@ -3,10 +3,7 @@ package com.Login.Oauth.Service;
 import com.Login.Oauth.Dto.*;
 import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
-import com.Login.Oauth.Exceptions.UserExceptions.DuplicateEntry;
-import com.Login.Oauth.Exceptions.UserExceptions.FriendNotFound;
-import com.Login.Oauth.Exceptions.UserExceptions.InvalidPassword;
-import com.Login.Oauth.Exceptions.UserExceptions.UserNotFound;
+import com.Login.Oauth.Exceptions.UserExceptions.*;
 import com.Login.Oauth.Repo.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -44,6 +41,7 @@ public class UserService {
 
     public UserDto addFriend(String userId, String friendId,String token) {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
+        if(userId.equals(friendId)) throw new Nonsense("User Cannot be friend to himself");
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
         User friend = userRepo.findById(friendId).orElseThrow(() -> new FriendNotFound("Friend not found"));
 
@@ -66,6 +64,7 @@ public class UserService {
 
     public UserDto removeFriend(String userId,String friendId,String token){
         if(validate(token)) throw new JwtInvalid("Token Invalid");
+        if(userId.equals(friendId)) throw new Nonsense("User Cannot be friend to himself");
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
         User friend = userRepo.findById(friendId).orElseThrow(() -> new FriendNotFound("Friend not found"));
 

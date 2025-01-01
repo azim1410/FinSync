@@ -9,6 +9,7 @@ import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Exceptions.GroupExceptions.GroupNotFound;
 import com.Login.Oauth.Exceptions.GroupExceptions.UserAlreadyInGorupException;
 import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
+import com.Login.Oauth.Exceptions.UserExceptions.Nonsense;
 import com.Login.Oauth.Exceptions.UserExceptions.UserNotFound;
 import com.Login.Oauth.Repo.GroupRepo;
 import com.Login.Oauth.Repo.UserRepo;
@@ -46,6 +47,7 @@ public class GroupService {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
+        if(userId.equals(group.getCreatedBy())) throw new Nonsense("Group is Owner is a member by default");
         if (group.getMemberIds().stream().anyMatch(memberId -> memberId.equals(userId))) {
             throw new UserAlreadyInGorupException("User is already in the group");
         }
@@ -62,7 +64,7 @@ public class GroupService {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
-
+        if(userId.equals(group.getCreatedBy())) throw new Nonsense("Group is Owner cannot be removed");
         group.getMemberIds().remove(userId);
         groupRepo.save(group);
 
