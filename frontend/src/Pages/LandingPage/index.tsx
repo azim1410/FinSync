@@ -1,7 +1,6 @@
 import { Box, Link, Typography } from '@mui/material';
 import NeatGradientComponent from '../../NEAT/NeatApp';
-import ButtonOne from '../../atoms/ButtonOne';
-import ButtonTwo from '../../atoms/ButtonTwo';
+
 
 function Landing() {
     return (

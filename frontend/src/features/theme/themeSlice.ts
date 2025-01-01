@@ -4,7 +4,7 @@ interface Themes {
     mytheme: string,
 }
 const initialState: Themes = {
-    mytheme: 'light',
+    mytheme: 'dark',
 }
 export const themeSlice = createSlice({
     name: 'theme',

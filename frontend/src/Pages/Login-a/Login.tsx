@@ -19,7 +19,7 @@ const Login = () => {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      dispatch(loginSuccess({ token: data.data }));
+      dispatch(loginSuccess({ token: data.data, userId: data.id }));
       navigate('/dashboard');
     },
     onError: (error) => {

@@ -1,16 +1,17 @@
-import { Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import Box from '@mui/material/Box';
-import { groups } from '../../Data/data';
-import Link from '@mui/material/Link';
 import GroupInfo from '../../atoms/GroupInfo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 const GroupsList = () => {
+    const groups = useSelector((state: RootState) => state.user.groups);
     return (
         <Box className="groups-list" sx={{ justifyContent: 'right', marginTop: '1rem' , marginBottom:'1rem'}}>
             <Box className="groups-header" sx={{ display: 'flex' , justifyContent: 'space-between', marginBottom: '1rem'}}>
                 <Typography color='#a1a1a1'>GROUPS</Typography>
-                <Link href="#" underline="hover" color='#9be0c3'>
-                    {'Add new group'}
-                </Link>
+                <Button>
+                    <Typography sx={{color:'#9be0c3', fontSize:'70%'}}>Create new group</Typography>
+                </Button>
             </Box>
             <Box 
                 height={200} 
@@ -33,7 +34,7 @@ const GroupsList = () => {
                 }}
             >
                 {groups.map((group) => (
-                    <GroupInfo id={group.id} grp_name={group.grp_name}/>
+                    <GroupInfo id={group.id} name={group.name}/>
                 ))}
             </Box>
         </Box>

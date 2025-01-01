@@ -14,9 +14,9 @@ const AppRoute = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/finsync" element={<Landing />}/>
-        <Route element={<ProtectedRoute />}>
           <Route path='/' element={<Layout />}>
             <Route path='/dashboard' element={<Dashboard />} />
+        <Route element={<ProtectedRoute />}>
           </Route>
         </Route>
       </Routes>

@@ -3,14 +3,14 @@ import GroupsIcon from '@mui/icons-material/Groups';
 
 type GroupInfoProp = {
     id: string,
-    grp_name: string,
+    name: string | null,
 }
 
-const GroupInfo = ({ id, grp_name }: GroupInfoProp) => {
+const GroupInfo = ({ id, name }: GroupInfoProp) => {
     return (
         <Box key={id} sx={{ padding: '2px', borderRadius: '20px', marginTop: '5px', marginBottom: '5px', cursor: 'pointer', display: 'flex', backgroundColor: '#efefef', paddingLeft: '1rem', paddingRight: '1rem', marginRight:'10px' }}>
             <GroupsIcon sx={{ color: '#9be0c3', marginRight: '0.5rem' }} />
-            <Typography color='#3c3c3c'>{grp_name}</Typography>
+            <Typography color='#3c3c3c'>{name}</Typography>
         </Box>
     )
 }

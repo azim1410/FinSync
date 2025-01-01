@@ -7,13 +7,16 @@ import { RootState } from "../../store/store";
 import { toggleTheme } from "../../features/theme/themeSlice";
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const currentTheme = useSelector((state: RootState) => state.theme.mytheme);
-
+    const userName = useSelector((state: RootState) => state.user.name);
     const handleLogout = () => {
         dispatch(logout());
+        navigate('/login');
     }
 
     const handleToggleTheme = () => {
@@ -31,7 +34,7 @@ const Navbar = () => {
             <Typography variant="h4" sx={{ fontWeight: 600, color: currentTheme === 'light' ? '#444444' : '#d8d8d8', fontSize: '2rem', }}>FinSync</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <AccountCircleIcon sx={{ color: currentTheme === 'light' ? '#444444' : '#d8d8d8', marginRight: '1rem' }} />
-                <Typography variant="h6" sx={{ color: currentTheme === 'light' ? '#444444' : '#d8d8d8' }}>User name</Typography>
+                <Typography variant="h6" sx={{ color: currentTheme === 'light' ? '#444444' : '#d8d8d8' }}>{userName}</Typography>
                 <Button onClick={() => handleLogout()} >
                     <LogoutIcon sx={{ color: currentTheme === 'light' ? '#444444' : '#d8d8d8', marginRight: '1rem' }} />
                 </Button>
