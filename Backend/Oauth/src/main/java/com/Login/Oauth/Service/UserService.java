@@ -6,6 +6,7 @@ import com.Login.Oauth.Dto.UserDto;
 import com.Login.Oauth.Dto.jwtDto;
 import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
+import com.Login.Oauth.Exceptions.UserExceptions.DuplicateEntry;
 import com.Login.Oauth.Exceptions.UserExceptions.FriendNotFound;
 import com.Login.Oauth.Exceptions.UserExceptions.InvalidPassword;
 import com.Login.Oauth.Exceptions.UserExceptions.UserNotFound;
@@ -31,6 +32,7 @@ public class UserService {
     private EmailSenderService emailSenderService;
 
     public UserDto addUser(User user){
+        if(!userRepo.findByEmail(user.getEmail()).isEmpty()) throw new DuplicateEntry("User Already Exists");
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
         String hashedPassword=bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
@@ -47,6 +49,8 @@ public class UserService {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
         User friend = userRepo.findById(friendId).orElseThrow(() -> new FriendNotFound("Friend not found"));
+
+        if(user.getFriends().contains(friend)) throw new DuplicateEntry("Friend Already Added");
 
         user.getFriends()
                 .add(User.builder().id(friend.getId())
@@ -67,6 +71,8 @@ public class UserService {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
         User friend = userRepo.findById(friendId).orElseThrow(() -> new FriendNotFound("Friend not found"));
+
+        if(!user.getFriends().contains(friend)) throw new DuplicateEntry("Friend Missing");
 
         user.getFriends().remove(friend);
         userRepo.save(user);

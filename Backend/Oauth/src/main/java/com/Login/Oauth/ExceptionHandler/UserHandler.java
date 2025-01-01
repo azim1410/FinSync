@@ -2,6 +2,7 @@ package com.Login.Oauth.ExceptionHandler;
 
 import com.Login.Oauth.Dto.ExceptionDto;
 import com.Login.Oauth.Entity.User;
+import com.Login.Oauth.Exceptions.UserExceptions.DuplicateEntry;
 import com.Login.Oauth.Exceptions.UserExceptions.FriendNotFound;
 import com.Login.Oauth.Exceptions.UserExceptions.InvalidPassword;
 import com.Login.Oauth.Exceptions.UserExceptions.UserNotFound;
@@ -31,5 +32,12 @@ public class UserHandler{
         return new ResponseEntity<>(ExceptionDto.builder().message(ex.getMessage())
                 .status("404")
                 .build(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DuplicateEntry.class)
+    public ResponseEntity<ExceptionDto> handleDuplicateEntryException(DuplicateEntry ex){
+        return new ResponseEntity<>(ExceptionDto.builder().message(ex.getMessage())
+                .status("404")
+                .build(), HttpStatus.LOOP_DETECTED);
     }
 }
