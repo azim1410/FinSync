@@ -1,9 +1,6 @@
 package com.Login.Oauth.Service;
 
-import com.Login.Oauth.Dto.AllUsersDto;
-import com.Login.Oauth.Dto.ResponseDto;
-import com.Login.Oauth.Dto.UserDto;
-import com.Login.Oauth.Dto.jwtDto;
+import com.Login.Oauth.Dto.*;
 import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
 import com.Login.Oauth.Exceptions.UserExceptions.DuplicateEntry;
@@ -104,6 +101,17 @@ public class UserService {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         User user=userRepo.findByEmail(email).orElseThrow(()->new UserNotFound("User not Found,Invite Him"));
         return ResponseEntity.ok(objectMapper.convertValue(user, AllUsersDto.class));
+    }
+
+    public ResponseEntity<String> inviteUser(InvitationDto invitationDto,String token){
+        if(validate(token)) throw new JwtInvalid("Token Invalid");
+        if(!userRepo.findByEmail(invitationDto.getTo_email()).isEmpty()) throw new DuplicateEntry("User Already Present");
+        try{
+            emailSenderService.invitePerson(invitationDto.getFrom_userName(),invitationDto.getTo_email());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return ResponseEntity.ok("Invitation send Successfully");
     }
 
     public Boolean validate(String token){
