@@ -54,4 +54,9 @@ public class UserController {
     public ResponseEntity<AllUsersDto> getUserFromEmail(@PathVariable String email,@RequestParam String Token){
         return userService.getUserFromEmail(email,Token);
     }
+
+    @PostMapping("/email/invitation")
+    public ResponseEntity<String> inviteUser(@RequestBody InvitationDto invitationDto,@RequestParam String Token){
+        return userService.inviteUser(invitationDto,Token);
+    }
 }

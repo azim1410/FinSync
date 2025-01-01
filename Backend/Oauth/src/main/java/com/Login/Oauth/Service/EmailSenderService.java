@@ -1,8 +1,8 @@
 package com.Login.Oauth.Service;
 
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -33,13 +33,34 @@ public class EmailSenderService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         // Load and modify the HTML template
-        Path templatePath = Paths.get(new ClassPathResource("templates/index.html").getURI());
+        Path templatePath = Paths.get(new ClassPathResource("templates/Welcome.html").getURI());
         String htmlContent = Files.readString(templatePath);
 
         helper.setTo(toEmail);
         helper.setSubject("Welcome to Fin Sync");
         helper.setText(htmlContent, true);
 
+        mailSender.send(message);
+    }
+
+    public void invitePerson(String from_username,String to_email) throws Exception{
+        // Create a MimeMessage
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        // Load and modify the HTML template
+        Path templatePath = Paths.get(new ClassPathResource("templates/Invitation.html").getURI());
+        String htmlContent = Files.readString(templatePath);
+
+        // Replace placeholders in the template with dynamic values
+        htmlContent = htmlContent.replace("[Inviter's Name]", "<b>" + from_username + "</b>");
+
+        // Set email properties
+        helper.setTo(to_email);
+        helper.setSubject("You're Invited to Join Fin Sync!");
+        helper.setText(htmlContent, true);
+
+        // Send the email
         mailSender.send(message);
     }
 }

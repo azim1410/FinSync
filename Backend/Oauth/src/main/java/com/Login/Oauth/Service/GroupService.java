@@ -3,10 +3,13 @@ package com.Login.Oauth.Service;
 import com.Login.Oauth.Dto.GroupDto;
 import com.Login.Oauth.Dto.TransactionDto;
 import com.Login.Oauth.Dto.UserDto;
+import com.Login.Oauth.Dto.jwtDto;
 import com.Login.Oauth.Entity.Group;
 import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Exceptions.GroupExceptions.GroupNotFound;
+import com.Login.Oauth.Exceptions.GroupExceptions.UserAlreadyInGorupException;
 import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
+import com.Login.Oauth.Exceptions.UserExceptions.Nonsense;
 import com.Login.Oauth.Exceptions.UserExceptions.UserNotFound;
 import com.Login.Oauth.Repo.GroupRepo;
 import com.Login.Oauth.Repo.UserRepo;
@@ -28,7 +31,7 @@ public class GroupService {
     private GroupRepo groupRepo;
     private UserRepo userRepo;
 
-    public GroupDto createGroup(Group group, String Id,String token) {
+    public jwtDto createGroup(Group group, String Id, String token) {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         User user = userRepo.findById(Id)
                 .orElseThrow(() -> new UserNotFound("User not found"));
@@ -37,14 +40,17 @@ public class GroupService {
         user.getGroups().add(group);
         userRepo.save(user);
 
-        return GroupDto.builder().message("created").status("200").build();
+        return jwtDto.builder().message("created").status("200").id(group.getId()).build();
     }
 
     public UserDto addUserToGroup(String userId, String groupId,String token) {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
-
+        if(userId.equals(group.getCreatedBy())) throw new Nonsense("Group is Owner is a member by default");
+        if (group.getMemberIds().stream().anyMatch(memberId -> memberId.equals(userId))) {
+            throw new UserAlreadyInGorupException("User is already in the group");
+        }
         group.getMemberIds().add(userId);
         groupRepo.save(group);
 
@@ -58,7 +64,7 @@ public class GroupService {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
         User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
-
+        if(userId.equals(group.getCreatedBy())) throw new Nonsense("Group is Owner cannot be removed");
         group.getMemberIds().remove(userId);
         groupRepo.save(group);
 
