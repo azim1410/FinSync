@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Pages/Login-a/Login';
 import Signup from './Pages/Signup/Signup';
 import Dashboard from './Pages/dashboard/Dashboard';
@@ -8,21 +8,23 @@ import Landing from './Pages/LandingPage';
 
 const AppRoute = () => {
   return (
-
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/finsync" element={<Landing />}/>
-          <Route path='/' element={<Layout />}>
-            <Route path='/dashboard' element={<Dashboard />} />
+        
+   
         <Route element={<ProtectedRoute />}>
+          <Route path="/finsync" element={<Layout />}>
+            <Route path="/finsync/dashboard" element={<Dashboard />} />
           </Route>
         </Route>
+        
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
+  );
+};
 
-  )
-}
-
-export default AppRoute
+export default AppRoute;

@@ -20,7 +20,7 @@ const Login = () => {
     mutationFn: login,
     onSuccess: (data) => {
       dispatch(loginSuccess({ token: data.data, userId: data.id }));
-      navigate('/dashboard');
+      navigate('/finsync/dashboard');
     },
     onError: (error) => {
       console.log("Login Failed", error);

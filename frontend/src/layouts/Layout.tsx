@@ -23,7 +23,7 @@ const Layout = () => {
     }
     getData();
 
-  }, [])
+  }, [dispatch, userId, token])
 
   return (
     <Box sx={{ backgroundColor: currentTheme === 'light' ? '#f7f7f7' : '#16181a' }}>
