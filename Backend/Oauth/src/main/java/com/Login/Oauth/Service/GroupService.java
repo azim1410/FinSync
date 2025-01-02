@@ -30,6 +30,7 @@ import java.util.UUID;
 public class GroupService {
     private GroupRepo groupRepo;
     private UserRepo userRepo;
+    private TransactionsService transactionsService;
 
     public jwtDto createGroup(Group group, String Id, String token) {
         if(validate(token)) throw new JwtInvalid("Token Invalid");
@@ -96,39 +97,9 @@ public class GroupService {
         return groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
     }
 
-    public GroupDto addTransactionToGroup(String groupId, double amount,String token,String description){
+    public GroupDto addTransactionToGroupByOwner(String groupId, double amount,String token,String description){
         if(validate(token)) throw new JwtInvalid("Token Invalid");
-        Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
-        List<String> memberIds = group.getMemberIds();
-
-        if (memberIds.isEmpty()) {
-            throw new RuntimeException("No members in the group to distribute the amount.");
-        }
-        double share = amount / (memberIds.size()+1);
-        for (String memberId : memberIds) {
-            User user = userRepo.findById(memberId).orElseThrow(() -> new RuntimeException("User not found"));
-            user.setYou_owe(user.getYou_owe() + share);
-            userRepo.save(user);
-        }
-
-        User user=userRepo.findById(group.getCreatedBy()).get();
-        user.setYou_are_owed(amount-share+ user.getYou_are_owed());
-        userRepo.save(user);
-
-        TransactionDto transaction = TransactionDto.builder()
-                .transactionId(UUID.randomUUID().toString())
-                .amount(amount)
-                .date(new Date())
-                .description(description)
-                .build();
-
-        if (group.getTransactions() == null) {
-            group.setTransactions(new ArrayList<>());
-        }
-
-        group.getTransactions().add(transaction);
-        groupRepo.save(group);
-        return GroupDto.builder().message("Transaction created and amount distributed successfully!").status("200").build();
+        return transactionsService.addTransactionToGroupByOwner(groupId,amount,description);
     }
 
     public Boolean validate(String token){
