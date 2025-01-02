@@ -25,5 +25,15 @@ export const addFriend = async (userId: string | null , friendId: string | null 
 
 export const removeFriend = async (userId: string | null , friendId: string | null , token: string| null) => {
     const respose = await axios.delete(`${API_URL}/${userId}/remove-friend/${friendId}?Token=${token}`);
+    console.log(respose);
     return respose;
+}
+
+export const InviteUser = async (token: string | null , userName: string | null, friendEmail: string | null) => {
+    const response = await axios.post(`${API_URL}/email/invitation?Token=${token}`, {
+        from_userName: userName,
+        to_email: friendEmail
+    });
+
+    return response.data;
 }

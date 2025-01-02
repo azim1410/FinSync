@@ -24,7 +24,7 @@ const FriendsList = () => {
                         width: '8px',
                     },
                     '&::-webkit-scrollbar-track': {
-                        backgroundColor: '#f1f1f1',
+                        backgroundColor: 'rgba(52, 52, 52, 0.5)',
                         borderRadius: '10px',
                     },
                     '&::-webkit-scrollbar-thumb': {
@@ -50,7 +50,7 @@ const FriendsList = () => {
                         width: '100vw',
                         height: '100vh',
                         backdropFilter: 'blur(8px)',
-                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -59,18 +59,19 @@ const FriendsList = () => {
                 >
                     <Box
                         sx={{
-                            backgroundColor: 'rgba(255, 255, 255, 0.72)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.93)',
                             borderRadius: '18px',
-                            padding: '20px',
-                            boxShadow: '0 4px 12px rgba(255, 255, 255, 0.83)',
-                            minWidth: '400px',
-                            display:'flex',
+                            padding: '2rem',
+                            boxShadow: '0 4px 12px rgba(82, 255, 203, 0.28)',
+                            minWidth: '500px',
+                            
                             
                         }}
                     >
+                        <Typography variant='h5' sx={{color:'white', marginLeft:'1rem'}}>Search for existing users on FinSync</Typography>
                         <SearchFriendBar />
                         <Button variant="contained"
-                            sx={{ color:'#ff652f', borderRadius:'20px', position:'absolute', top:100, right: 200, backgroundColor:'rgba(0, 0, 0, 0.4)', backdropFilter: 'blur(8px)',}}
+                            sx={{ color:'#9be0c3', borderRadius:'20px', position:'absolute', top:100, right: 200, backgroundColor: 'rgba(107, 107, 107, 0.4)', backdropFilter: 'blur(8px)',}}
                             onClick={() => setOpenSearchBar(false)}
                         >
                             Close

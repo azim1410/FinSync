@@ -38,7 +38,8 @@ const SearchBar = () => {
         <Box
         sx={{
             textAlign:'center',
-            margin:'auto'
+            margin:'auto',
+            padding:'1rem',
         }}
         >
             <Autocomplete
@@ -46,7 +47,7 @@ const SearchBar = () => {
                 options={userData}
                 getOptionLabel={(option) => option.name || option.email || 'Unnamed User'}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
-                sx={{ width: 300, }}
+                sx={{ width: 500, backgroundColor:'white', color:'white',  borderRadius:'10px' }}
                 renderInput={(params) => <TextField {...params} label="Friends" />}
                 onChange={(event, value) => {
                     setSelectedUserId(value ? value.id : null);
@@ -60,16 +61,16 @@ const SearchBar = () => {
                     marginTop:'1rem',
                     padding:'1rem',
                 }}>
-                    <Typography>Do you want to add the selected user to your friend list ?</Typography>
+                    <Typography sx={{color:'white'}}>Do you want to add the selected user to your friend list ?</Typography>
                     <Box sx={{marginTop:'1rem'}}>
                     <Button onClick={() => handleAddFriend()}
-                            sx={{ color:'#ff652f', borderRadius:'10px', backgroundColor:'rgba(190, 190, 190, 0.4)', backdropFilter: 'blur(8px)'}}
+                           sx={{ color: '#9be0c3', borderRadius: '10px', backgroundColor: 'rgba(107, 107, 107, 0.4)', backdropFilter: 'blur(8px)' }}
                             
                         >
                             Add friend
                         </Button>
                     </Box>
-                    <Typography>{msg}</Typography>
+                    <Typography sx={{color:'white', marginTop:'1rem'}}>{msg}</Typography>
                 </Box>
             )}
         </Box>

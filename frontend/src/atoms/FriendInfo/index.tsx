@@ -29,7 +29,8 @@ const FriendInfo = ({ id, name }: FriendInfoProps) => {
     const handleRemoveFriend = async () => {
         setLoading(true);
         try {
-            await removeFriend(userId, id, token); // Call the remove friend function
+            await removeFriend(userId, id, token); 
+  
         } catch (error) {
             console.error('Failed to remove friend:', error);
         } finally {

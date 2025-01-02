@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 
 type InfoBoxProps = {
     title: string,
-    balance: string,
+    balance: string | number,
 }
 const InfoBox = ({title, balance}: InfoBoxProps) => {
   return (
