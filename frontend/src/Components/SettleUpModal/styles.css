@@ -1,0 +1,134 @@
+.settle-container {
+  position: relative;
+  min-height: 360px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.settle-header {
+  background: #5cc5a7;
+  color: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #36977b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settle-header-h2 {
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 #318a71;
+}
+
+.settle-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Spacing between the text and buttons */
+  padding: 0 35px;
+}
+
+.plain-text {
+  margin: 16px 0 8px;
+  color: #666;
+  font-size: 16px;
+}
+
+.cash-payment-btn {
+  width: 90%;
+  padding: 12px;
+  font-size: 14px;
+  background-color: #5cc5a7;
+  color: white;
+  text-shadow: 0 -1px 0px #318a71;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.cash-payment-btn:hover {
+  background-color: #4bbf8e;
+}
+
+.paypal-payment-btn {
+  width: 90%;
+  padding: 0 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px auto;
+  opacity: 0.7;
+}
+
+.paypal-payment-btn img {
+  height: 45px;
+  width: auto;
+}
+
+.paypal-payment-btn:hover {
+  background-color: #e6e6e6;
+  opacity: 1;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #888;
+  padding: 5px 20px;
+  text-align: center;
+  line-height: 14px;
+}
+
+/* ----- Cancel/Save button styling ----- */
+.buttons-container {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 10px; /* Adds space between buttons */
+  border-top: #e6e6e6 1px solid;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #f5f5f5;
+  color: #353535;
+  border: 1px solid #ccc;
+}
+
+.save-btn {
+  background-color: #5cc5a7;
+  color: white;
+  border: 1px solid #5cc5a7;
+}
+
+.cancel-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.save-btn:hover {
+  background-color: #4bbf8e;
+}

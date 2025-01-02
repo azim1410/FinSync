@@ -1,0 +1,276 @@
+.dashboard {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
+  /* height: 64px; */
+  border-bottom: none;
+  --orange-color: #ff652f;
+  --lightgreen-color: #5bc5a7;
+  display: flex;
+  justify-content: center;
+}
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.dashboard-left-container,
+.dashboard-right-container {
+  width: 180px;
+  background-color: #333;
+  min-height: 100vh;
+  transition: all 0.3s ease; /* Smoothly hide/show the containers */
+}
+
+.dashboard-center-container {
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+@media (max-width: 980px) {
+  .dashboard-left-container,
+  .dashboard-right-container {
+    display: none; /* Hide the left and right containers */
+  }
+
+  .dashboard-center-container {
+    width: 100%; /* Center container takes full width */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+}
+
+.dashboard-h1 {
+  overflow: hidden;
+  max-width: 315px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 38px;
+  height: 38px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #333;
+  padding-left: 5px;
+}
+.dashboard-header {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 40px;
+  position: relative;
+  z-index: 9;
+  background: #eee;
+  border-bottom: none;
+  padding: 13px 10px 10px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
+.dashboard-expense-actions {
+  display: inherit;
+  gap: 10px;
+}
+
+.button {
+  padding: 9px 14px;
+  font-size: 15px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.add-expense-btn {
+  background: #ff652f;
+  color: #fff;
+  text-shadow: 0 -1px 0 #c83400;
+}
+
+.settle-up-btn {
+  background-color: #5bc5a7;
+  color: #fff;
+  text-shadow: 0 -1px 0 #318970;
+}
+
+/* ------------------------------------------------------ */
+
+.total-balances {
+  position: relative;
+  padding: 0px 15px 5px;
+  font-size: 0px;
+  /* margin: 0px -15px 0; */
+  /* padding: 7px 0 2px; */
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  color: #999;
+  text-align: center;
+}
+
+.total-balances .block:first-child {
+  border-left: none;
+}
+.block {
+  display: inline-block;
+  width: 175px;
+  text-align: center;
+  padding: 5px 5px 5px;
+  border-left: 1px solid #ddd;
+  line-height: 16px;
+  font-size: 13px;
+}
+
+.total-balances .multiple_currencies {
+  font-size: 12px;
+  border-top: 1px solid #ddd;
+  padding-top: 4px;
+}
+
+/* ---------------------------------------------------------- */
+.dashboard-you-owe {
+  padding: 1rem; /* Add padding */
+  max-width: 100%; /* Ensure container fits within parent */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  box-sizing: border-box; /* Include padding and border in width calculations */
+}
+
+
+
+.small-owe-headers h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.owing-header1 {
+  margin-left: -95px;
+}
+
+.owing-header2 {
+  padding-left: 15px;
+}
+
+.people-summary {
+  display: flex;
+  flex-direction: row; /* Negatives and positives side by side */
+  justify-content: space-between; /* Distribute negatives and positives evenly */
+  gap: 1rem; /* Add spacing between sections */
+  width: 100%;
+}
+
+.people-list {
+  display: flex;
+  flex-direction: row; /* Keep negatives and positives side by side */
+  width: 100%; /* Ensure full width */
+  justify-content: center;
+}
+
+.people-list .negatives {
+  width: 50%; /* Each section takes up half the width */
+  text-align: left; /* Align text to the left */
+  padding-right: 1rem; /* Add spacing on the right */
+  border-right: 1px solid #eee; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.people-list .positives {
+  width: 50%; /* Each section takes up half the width */
+  text-align: left; /* Align text properly */
+  padding-left: 1rem; /* Add spacing on the left */
+}
+
+.relationship {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  /* border-bottom: 1px solid #e0e0e0;  */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.relationship img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.relationship h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.balance-i-owe,
+.balance-owes-me {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #777;
+}
+
+.balance-i-owe .amount {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--orange-color);
+  /* margin-top: 4px; */
+}
+
+.balance-owes-me .amount {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--lightgreen-color);
+  /* margin-top: 4px; */
+}
+
+/* Modal styling */
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 0px;
+  max-width: 500px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  /* font-weight: bold; */
+  color: #ffffff;
+  cursor: pointer;
+}
+
+

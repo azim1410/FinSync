@@ -1,0 +1,118 @@
+/* General styles for human summary */
+.human_summary {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* align-items: flex-start;  */
+  width: 100%; /* Ensures the component does not exceed the container's width */
+  box-sizing: border-box; /* Accounts for padding in width calculation */
+  padding: 8px 0; /* Adds space within the container */
+  height: 100%;
+  font-family: Arial, sans-serif;
+
+}
+
+.human_summary a {
+  max-width: 100%; /* Prevents anchor links from exceeding the container's width */
+  text-overflow: ellipsis; /* Truncates overflowing text with ellipsis */
+  overflow: hidden;
+  white-space: nowrap; /* Ensures text stays on a single line */
+}
+
+/* Main text links */
+.human_summary .payer,
+.human_summary .split {
+  color: #5cc5a7;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 2px 6px;
+  background: #f0fdfa;
+  border: 1px dashed #5cc5a7;
+  border-radius: 10px;
+}
+
+.human_summary .payer:hover,
+.human_summary .split:hover {
+  background: #5cc5a7;
+  color: #fff;
+}
+
+.paid-by-summary {
+  margin: 5px 0;
+}
+/* Details text */
+.details {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Button container styling */
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Date Picker Styling */
+.date-picker {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  background: #f6f6f6;
+  color: #333;
+  width: 130px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.date-picker:hover,
+.date-picker:focus {
+  border-color: #5cc5a7;
+  box-shadow: 0 0 5px rgba(92, 197, 167, 0.5);
+}
+
+/* Notes Button Styling */
+.notes-button {
+  display: inline-block;
+  background: #f6f6f6;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  color: #666;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-family: "Inter", Arial, sans-serif;
+  white-space: nowrap; /* Ensures text doesn't break into multiple lines */
+  overflow: hidden;    /* Prevents text overflow */
+  text-overflow: ellipsis; /* Adds ellipsis if text exceeds button width */
+  width: 130px;        /* Ensures consistent button width */
+  box-sizing: border-box; /* Includes padding and border in width calculation */
+}
+
+.notes-button:hover {
+  background: #5cc5a7;
+  color: #fff;
+  border-color: #5cc5a7;
+}
+
+.notes-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(92, 197, 167, 0.5);
+}
