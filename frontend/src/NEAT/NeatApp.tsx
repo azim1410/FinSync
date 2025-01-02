@@ -3,30 +3,46 @@ import { NeatGradient, NeatConfig } from '@firecms/neat';
 
 const neatConfig: NeatConfig = {
     colors: [
-        { color: '#11FD56', enabled: true },
-        { color: '#90FFB3', enabled: true },
-        { color: '#58FFC5', enabled: true },
-        { color: '#3BFFDB', enabled: true },
-        { color: '#E1F5F4', enabled: false }
+        {
+            color: '#5BFFB8',
+            enabled: true,
+        },
+        {
+            color: '#ABFFC7',
+            enabled: true,
+        },
+        {
+            color: '#A9FEDD',
+            enabled: true,
+        },
+        {
+            color: '#5BFFBF',
+            enabled: true,
+        },
+        {
+            color: '#B8FADD',
+            enabled: true,
+        },
     ],
-    speed: 2,
-    horizontalPressure: 5,
-    verticalPressure: 6,
-    waveFrequencyX: 1,
-    waveFrequencyY: 2,
-    waveAmplitude: 10,
-    shadows: 0,
+    speed: 4,
+    horizontalPressure: 4,
+    verticalPressure: 3,
+    waveFrequencyX: 0,
+    waveFrequencyY: 0,
+    waveAmplitude: 0,
+    shadows: 2,
     highlights: 7,
-    colorBrightness: 1.05,
-    colorSaturation: 0,
+    colorBrightness: 1,
+    colorSaturation: 8,
     wireframe: false,
-    colorBlending: 9,
-    backgroundColor: '#003FFF',
+    colorBlending: 5,
+    backgroundColor: '#FF0000',
     backgroundAlpha: 1,
     grainScale: 0,
+    grainSparsity: 0,
     grainIntensity: 0,
     grainSpeed: 0,
-    resolution: 1,
+    resolution: 0.5,
 };
 
 const NeatGradientComponent: React.FC = () => {
