@@ -39,6 +39,15 @@ public class GroupService {
         groupRepo.save(group);
         user.getGroups().add(group);
         userRepo.save(user);
+        if(!group.getMemberIds().isEmpty()){
+            List<String>members=group.getMemberIds();
+            for(String i:members){
+                user=userRepo.findById(i)
+                        .orElseThrow(() -> new UserNotFound("User not found"));
+                user.getGroups().add(group);
+                userRepo.save(user);
+            }
+        }
 
         return jwtDto.builder().message("created").status("200").id(group.getId()).build();
     }

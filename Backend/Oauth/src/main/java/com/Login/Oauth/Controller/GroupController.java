@@ -41,4 +41,5 @@ public class GroupController {
     public GroupDto addTransactionToGroup(@PathVariable String groupId, @RequestParam String Token, @RequestBody AmountDto amountdto){
         return groupService.addTransactionToGroup(groupId, amountdto.getAmount(),Token, amountdto.getDescription());
     }
+
 }
