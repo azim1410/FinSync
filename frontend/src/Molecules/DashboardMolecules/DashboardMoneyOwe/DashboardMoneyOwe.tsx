@@ -1,4 +1,4 @@
-import React from "react";
+
 // import profile_pic1 from "../profile_pic1.webp";
 import profile_pic1 from '../../../assets/profile_pic1.webp'
 import profile_pic2 from "../../../assets/profile_pic2.webp";

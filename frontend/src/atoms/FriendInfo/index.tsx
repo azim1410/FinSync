@@ -46,7 +46,7 @@ const FriendInfo = ({ id, name }: FriendInfoProps) => {
                 key={id}
                 sx={{
                     padding: '2px',
-                    borderRadius: '20px',
+                    borderRadius: '10px',
                     marginTop: '5px',
                     marginBottom: '5px',
                     cursor: 'pointer',

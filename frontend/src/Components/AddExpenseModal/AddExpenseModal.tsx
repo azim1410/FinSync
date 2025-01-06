@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.css';
-import MoneySplitList from '../../Molecules/AddExpense/MoneySplitList';
-import EnterMoney from '../../Molecules/AddExpense/EnterMoney';
-import PayerSplitButtons from '../../Molecules/AddExpense/PayerSplitButtons';
+import MoneySplitList from '../../molecules/AddExpense/MoneySplitList';
+import EnterMoney from '../../molecules/AddExpense/EnterMoney';
+import PayerSplitButtons from '../../molecules/AddExpense/PayerSplitButtons';
 
 const AddExpenseModal: React.FC = () => {
   return (

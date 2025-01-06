@@ -7,12 +7,15 @@
   --lightgreen-color: #5bc5a7;
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
 }
 .dashboard-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .dashboard-left-container,
@@ -28,6 +31,7 @@
   padding: 20px;
   box-sizing: border-box;
   flex-grow: 1;
+  z-index: 0;
 }
 
 @media (max-width: 980px) {
@@ -63,7 +67,7 @@
   height: 40px;
   position: relative;
   z-index: 9;
-  background: #eee;
+  background: #ffffff;
   border-bottom: none;
   padding: 13px 10px 10px;
   border-bottom: 1px solid #ddd;
@@ -109,7 +113,7 @@
   font-size: 0px;
   /* margin: 0px -15px 0; */
   /* padding: 7px 0 2px; */
-  background: #eee;
+  background: #fefefe;
   border-bottom: 1px solid #ddd;
   color: #999;
   text-align: center;
