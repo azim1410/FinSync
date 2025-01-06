@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./styles.css";
-import DashboardHeader from "../../molecules/DashboardMolecules/DashboardHeader/DashboardHeader";
-import DashboardMoneyOwe from "../../molecules/DashboardMolecules/DashboardMoneyOwe/DashboardMoneyOwe";
-
-import AddExpenseModal from "../../components/AddExpenseModal/AddExpenseModal";
-import SettleUpModal from "../../components/SettleUpModal/SettleUpModal";
+import DashboardHeader from "../../Molecules/DashboardMolecules/DashboardHeader/DashboardHeader";
+import DashboardLeftContainer from "../../Molecules/DashboardMolecules/DashboardLeftContainer/DashboardLeftContainer";
+import DashboardMoneyOwe from "../../Molecules/DashboardMolecules/DashboardMoneyOwe/DashboardMoneyOwe";
+import DashboardRightContainer from "../../Molecules/DashboardMolecules/DashboardRightContainer/DashboardRightContainer";
+import AddExpenseModal from "../../Components/AddExpenseModal/AddExpenseModal";
+import SettleUpModal from "../../Components/SettleUpModal/SettleUpModal";
 
 const Dashboard: React.FC = () => {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
@@ -29,7 +30,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <div className="dashboard-container">
-    
+        <DashboardLeftContainer />
         <div className="dashboard-center-container">
           <DashboardHeader
             openAddExpenseModal={openAddExpenseModal}
@@ -37,7 +38,7 @@ const Dashboard: React.FC = () => {
           />
           <DashboardMoneyOwe />
         </div>
-     
+        <DashboardRightContainer />
       </div>
 
       {/* Add Expense Modal */}
