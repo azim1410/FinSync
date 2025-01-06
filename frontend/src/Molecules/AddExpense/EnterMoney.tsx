@@ -16,7 +16,7 @@ const EnterMoney: React.FC = () => {
           placeholder="Enter a description"
         />
         <div className="cost-container">
-          <span className="currency">$</span>
+          <span className="currency">₹</span>
           <input type="text" className=" cost" placeholder="0.00" />
         </div>
       </div>

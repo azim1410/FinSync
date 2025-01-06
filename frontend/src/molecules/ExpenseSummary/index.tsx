@@ -17,9 +17,9 @@ const ExpenseSummary = () => {
   return (
     <Container maxWidth="lg" sx={{marginTop: '1rem', marginBottom: '1rem'}}>
       <Stack direction="row" spacing={2}>
-        <InfoBox title='total balance' balance={computeTotalBalance}/>
-        <InfoBox title='you owe' balance={youOwe}/>
-        <InfoBox title='you are owed' balance={youAreOwed}/>
+        <InfoBox title='total balance' balance={computeTotalBalance.toFixed(2)}/>
+        <InfoBox title='you owe' balance={youOwe.toFixed(2)}/>
+        <InfoBox title='you are owed' balance={youAreOwed.toFixed(2)}/>
       </Stack>
     </Container>
   )

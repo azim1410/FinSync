@@ -43,6 +43,7 @@ const GroupsList = () => {
     };
 
     const handleGetGroupInfo = async (grpId: string) => {
+        console.log(grpId);
         const response = await getGroupInfo(grpId, token);
         dispatch(setSelectedItem(response));
     } 

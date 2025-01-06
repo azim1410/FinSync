@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./styles.css";
 import DashboardHeader from "../../molecules/DashboardMolecules/DashboardHeader/DashboardHeader";
 import DashboardMoneyOwe from "../../molecules/DashboardMolecules/DashboardMoneyOwe/DashboardMoneyOwe";
-import AddExpenseModal from "../../components/AddExpenseModal/AddExpenseModal";
+// import AddExpenseModal from "../../components/AddExpenseModal/AddExpenseModal";
 import SettleUpModal from "../../components/SettleUpModal/SettleUpModal";
+import CreateNewExpense from "../../molecules/CreateNewExpense";
 
 const Dashboard: React.FC = () => {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
@@ -41,7 +42,8 @@ const Dashboard: React.FC = () => {
       {isAddExpenseModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <AddExpenseModal />
+            {/* <AddExpenseModal /> */}
+            <CreateNewExpense />
             <button className="close-modal" onClick={closeAddExpenseModal}>
               &times;
             </button>
