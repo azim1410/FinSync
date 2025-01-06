@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./styles.css";
-import DashboardHeader from "../../Molecules/DashboardMolecules/DashboardHeader/DashboardHeader";
-import DashboardLeftContainer from "../../Molecules/DashboardMolecules/DashboardLeftContainer/DashboardLeftContainer";
-import DashboardMoneyOwe from "../../Molecules/DashboardMolecules/DashboardMoneyOwe/DashboardMoneyOwe";
-import DashboardRightContainer from "../../Molecules/DashboardMolecules/DashboardRightContainer/DashboardRightContainer";
-import AddExpenseModal from "../../Components/AddExpenseModal/AddExpenseModal";
-import SettleUpModal from "../../Components/SettleUpModal/SettleUpModal";
+import DashboardHeader from "../../molecules/DashboardMolecules/DashboardHeader/DashboardHeader";
+import DashboardLeftContainer from "../../molecules/DashboardMolecules/DashboardLeftContainer/DashboardLeftContainer";
+import DashboardMoneyOwe from "../../molecules/DashboardMolecules/DashboardMoneyOwe/DashboardMoneyOwe";
+import DashboardRightContainer from "../../molecules/DashboardMolecules/DashboardRightContainer/DashboardRightContainer";
+import AddExpenseModal from "../../components/AddExpenseModal/AddExpenseModal";
+import SettleUpModal from "../../components/SettleUpModal/SettleUpModal";
 
 const Dashboard: React.FC = () => {
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState(false);
