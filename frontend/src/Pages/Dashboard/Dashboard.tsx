@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 import DashboardHeader from "../../molecules/DashboardMolecules/DashboardHeader/DashboardHeader";
-import DashboardLeftContainer from "../../molecules/DashboardMolecules/DashboardLeftContainer/DashboardLeftContainer";
 import DashboardMoneyOwe from "../../molecules/DashboardMolecules/DashboardMoneyOwe/DashboardMoneyOwe";
-import DashboardRightContainer from "../../molecules/DashboardMolecules/DashboardRightContainer/DashboardRightContainer";
 import AddExpenseModal from "../../components/AddExpenseModal/AddExpenseModal";
 import SettleUpModal from "../../components/SettleUpModal/SettleUpModal";
 
@@ -30,7 +28,6 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <div className="dashboard-container">
-        <DashboardLeftContainer />
         <div className="dashboard-center-container">
           <DashboardHeader
             openAddExpenseModal={openAddExpenseModal}
@@ -38,7 +35,6 @@ const Dashboard: React.FC = () => {
           />
           <DashboardMoneyOwe />
         </div>
-        <DashboardRightContainer />
       </div>
 
       {/* Add Expense Modal */}
