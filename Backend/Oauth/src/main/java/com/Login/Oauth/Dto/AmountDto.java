@@ -10,4 +10,5 @@ import lombok.Data;
 public class AmountDto {
     private double amount;
     private String description;
+    private String paidBy;
 }

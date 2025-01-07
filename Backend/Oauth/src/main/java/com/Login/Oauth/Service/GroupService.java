@@ -97,9 +97,9 @@ public class GroupService {
         return groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
     }
 
-    public GroupDto addTransactionToGroupByOwner(String groupId, double amount,String token,String description){
+    public GroupDto addTransactionToGroupEqually(String groupId, double amount,String token,String description,String paidBy){
         if(validate(token)) throw new JwtInvalid("Token Invalid");
-        return transactionsService.addTransactionToGroupByOwner(groupId,amount,description);
+        return transactionsService.addTransactionToGroupEqually(groupId,amount,description,paidBy);
     }
 
     public Boolean validate(String token){
