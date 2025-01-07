@@ -37,9 +37,9 @@ public class GroupController {
         return groupService.getGroupById(groupId,Token);
     }
 
-    @PostMapping("/{groupId}/transaction")
+    @PostMapping("/{groupId}/transactionByOwner")
     public GroupDto addTransactionToGroup(@PathVariable String groupId, @RequestParam String Token, @RequestBody AmountDto amountdto){
-        return groupService.addTransactionToGroup(groupId, amountdto.getAmount(),Token, amountdto.getDescription());
+        return groupService.addTransactionToGroupEqually(groupId, amountdto.getAmount(),Token, amountdto.getDescription(),amountdto.getPaidBy());
     }
 
 }

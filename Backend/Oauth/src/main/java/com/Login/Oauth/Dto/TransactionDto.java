@@ -6,6 +6,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -15,4 +17,6 @@ public class TransactionDto {
     private double amount;
     private Date date;
     private String description;
+    private String payedBy;
+    private Map<String,Double> amountsPerPerson;
 }
