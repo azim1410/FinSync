@@ -2,11 +2,11 @@ package com.Login.Oauth.Service;
 
 import com.Login.Oauth.Dto.GroupDto;
 import com.Login.Oauth.Dto.TransactionDto;
+import com.Login.Oauth.Dto.UnequalAmountDto;
 import com.Login.Oauth.Entity.Group;
 import com.Login.Oauth.Entity.Transactions;
 import com.Login.Oauth.Entity.User;
 import com.Login.Oauth.Exceptions.GroupExceptions.GroupNotFound;
-import com.Login.Oauth.Exceptions.JwtExceptions.JwtInvalid;
 import com.Login.Oauth.Repo.GroupRepo;
 import com.Login.Oauth.Repo.TransactionRepo;
 import com.Login.Oauth.Repo.UserRepo;
@@ -14,10 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @Data
@@ -42,6 +39,7 @@ public class TransactionsService {
                 .amount(amount)
                 .date(new Date())
                 .description(description)
+                .payedBy(paidBy)
                 .build();
 
         double share = amount / (memberIds.size());
@@ -73,5 +71,49 @@ public class TransactionsService {
         group.getTransactions().add(transaction);
         groupRepo.save(group);
         return GroupDto.builder().message("Transaction created and amount distributed successfully!").status("200").build();
+    }
+
+    public GroupDto addTransactionToGroupUnEqually(String groupId, UnequalAmountDto unequalAmountDto){
+        Group group = groupRepo.findById(groupId).orElseThrow(() -> new GroupNotFound("Group not found"));
+
+        TransactionDto transaction = TransactionDto.builder()
+                .transactionId(UUID.randomUUID().toString())
+                .amount(unequalAmountDto.getAmount())
+                .date(new Date())
+                .description(unequalAmountDto.getDescription())
+                .payedBy(unequalAmountDto.getPaidBy())
+                .build();
+
+        Map<String,Double>amountsMapping=unequalAmountDto.getAmounts();
+
+        for(Map.Entry<String,Double>entry: amountsMapping.entrySet()){
+            User user = userRepo.findById(entry.getKey()).orElseThrow(() -> new RuntimeException("User not found"));
+            if(entry.getKey().equals(unequalAmountDto.getPaidBy())){
+                user.setYou_are_owed(entry.getValue()+ user.getYou_are_owed());
+                userRepo.save(user);
+            }
+            else {
+                user.setYou_owe(user.getYou_owe() + entry.getValue());
+                userRepo.save(user);
+                Transactions transactions= Transactions.builder()
+                        .from(user.getId())
+                        .to(unequalAmountDto.getPaidBy())
+                        .transactionId(transaction.getTransactionId())
+                        .amount(entry.getValue())
+                        .status(false)
+                        .groupId(groupId)
+                        .build();
+                transactionRepo.save(transactions);
+            }
+        }
+
+        if (group.getTransactions() == null) {
+            group.setTransactions(new ArrayList<>());
+        }
+
+        group.getTransactions().add(transaction);
+        groupRepo.save(group);
+
+        return GroupDto.builder().message("Transaction Added Succefully!").status("200").build();
     }
 }

@@ -1,9 +1,6 @@
 package com.Login.Oauth.Controller;
 
-import com.Login.Oauth.Dto.AmountDto;
-import com.Login.Oauth.Dto.GroupDto;
-import com.Login.Oauth.Dto.UserDto;
-import com.Login.Oauth.Dto.jwtDto;
+import com.Login.Oauth.Dto.*;
 import com.Login.Oauth.Entity.Group;
 import com.Login.Oauth.Service.GroupService;
 import lombok.AllArgsConstructor;
@@ -40,6 +37,11 @@ public class GroupController {
     @PostMapping("/{groupId}/transaction/equally")
     public GroupDto addTransactionToGroup(@PathVariable String groupId, @RequestParam String Token, @RequestBody AmountDto amountdto){
         return groupService.addTransactionToGroupEqually(groupId, amountdto.getAmount(),Token, amountdto.getDescription(),amountdto.getPaidBy());
+    }
+
+    @PostMapping("/{groupId}/transaction/unequally")
+    public GroupDto addTransactionToGroupUnequally(@PathVariable String groupId, @RequestParam String Token, @RequestBody UnequalAmountDto unequalAmountDto){
+        return groupService.addTransactionToGroupUnEqually(groupId,Token,unequalAmountDto);
     }
 
 }

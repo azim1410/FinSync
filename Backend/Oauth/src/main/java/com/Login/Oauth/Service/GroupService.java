@@ -1,7 +1,7 @@
 package com.Login.Oauth.Service;
 
 import com.Login.Oauth.Dto.GroupDto;
-import com.Login.Oauth.Dto.TransactionDto;
+import com.Login.Oauth.Dto.UnequalAmountDto;
 import com.Login.Oauth.Dto.UserDto;
 import com.Login.Oauth.Dto.jwtDto;
 import com.Login.Oauth.Entity.Group;
@@ -15,14 +15,10 @@ import com.Login.Oauth.Repo.GroupRepo;
 import com.Login.Oauth.Repo.UserRepo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Data
@@ -100,6 +96,11 @@ public class GroupService {
     public GroupDto addTransactionToGroupEqually(String groupId, double amount,String token,String description,String paidBy){
         if(validate(token)) throw new JwtInvalid("Token Invalid");
         return transactionsService.addTransactionToGroupEqually(groupId,amount,description,paidBy);
+    }
+
+    public GroupDto addTransactionToGroupUnEqually(String groupId, String token, UnequalAmountDto unequalAmountDto){
+        if(validate(token)) throw new JwtInvalid("Token Invalid");
+        return transactionsService.addTransactionToGroupUnEqually(groupId,unequalAmountDto);
     }
 
     public Boolean validate(String token){
