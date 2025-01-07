@@ -12,7 +12,7 @@ import java.util.Date;
 @Builder
 public class Transactions {
     @Id
-    private int id;
+    private String id;
     private String from,to,transactionId;
     private Double amount;
     private Boolean status;

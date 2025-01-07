@@ -44,7 +44,7 @@ public class TransactionsService {
                 .description(description)
                 .build();
 
-        double share = amount / (memberIds.size()+1);
+        double share = amount / (memberIds.size());
         for (String memberId : memberIds) {
             User user = userRepo.findById(memberId).orElseThrow(() -> new RuntimeException("User not found"));
             if(memberId.equals(paidBy)){
