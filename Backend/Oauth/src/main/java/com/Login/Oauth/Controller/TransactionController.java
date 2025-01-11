@@ -19,6 +19,6 @@ public class TransactionController {
 
     @GetMapping("/{user1}/with/{user2}")
     public List<Transactions> getAllTransactions(@PathVariable String user1,@PathVariable String user2,@RequestParam String Token){
-        transactionsService.getAllTransactionsFrom(user1,user2,Token);
+        return transactionsService.getAllTransactionsFrom(user1,user2,Token);
     }
 }
