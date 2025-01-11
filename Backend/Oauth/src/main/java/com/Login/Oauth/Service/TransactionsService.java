@@ -116,4 +116,8 @@ public class TransactionsService {
 
         return GroupDto.builder().message("Transaction Added Succefully!").status("200").build();
     }
+
+    public List<Transactions> getAllTransactionsFrom(String user1,String user2,String token){
+        return transactionRepo.findTransactionsBetweenUsers(user1,user2);
+    }
 }
